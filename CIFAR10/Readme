@@ -1,0 +1,142 @@
+# CIFAR-10 Image Classification using CNN
+
+## 📌 Overview
+
+Built a Convolutional Neural Network (CNN) to classify color images into 10 object categories using the CIFAR-10 dataset.
+
+✔ Multi-class image classification (10 classes)
+✔ Achieved ~75–80% test accuracy
+✔ Applied regularization techniques to reduce overfitting
+
+---
+
+## 📂 Dataset
+
+* Dataset: CIFAR-10
+* Source: keras.datasets.cifar10 (built-in)
+* Total Classes: 10
+* Image Size: 32×32 (RGB)
+
+### Classes:
+
+```
+airplane, automobile, bird, cat, deer,
+dog, frog, horse, ship, truck
+```
+
+---
+
+## ⚙️ Approach
+
+### 1. Data Preprocessing
+
+* Normalized pixel values (0–1)
+* No resizing required (already 32×32)
+* Labels kept in integer format
+
+---
+
+### 2. Model Architecture
+
+```
+Conv2D (32 filters) + ReLU  
+Batch Normalization  
+Conv2D (32 filters) + ReLU  
+MaxPooling  
+Dropout (0.25)  
+
+Conv2D (64 filters) + ReLU  
+Batch Normalization  
+Conv2D (64 filters) + ReLU  
+MaxPooling  
+Dropout (0.25)  
+
+Conv2D (128 filters) + ReLU  
+Batch Normalization  
+MaxPooling  
+Dropout (0.3)  
+
+Flatten  
+Dense (256) + ReLU  
+Dropout (0.5)  
+
+Output Layer (10 classes, Softmax)
+```
+
+---
+
+### 3. Training
+
+* Optimizer: Adam
+* Loss: Sparse Categorical Crossentropy
+* Epochs: 15–20
+* Batch Size: 128
+
+---
+
+## 📊 Results
+
+* Training Accuracy: ~85–90%
+* Test Accuracy: ~75–80%
+
+### 📈 Observations
+
+* Model performs well on distinct objects (airplane, ship)
+* Confusion observed between similar classes:
+
+  * cat vs dog
+  * automobile vs truck
+
+---
+
+## 🧠 Key Insights
+
+* Small image size (32×32) limits feature extraction
+* Deeper networks improve performance but increase overfitting risk
+* Regularization (Dropout + BatchNorm) significantly improves generalization
+
+---
+
+## 🚀 How to Run
+
+```
+pip install tensorflow numpy matplotlib
+```
+
+```
+python train.py
+```
+
+---
+
+## 📁 Project Structure
+
+```
+cifar10-cnn/
+│
+├── data/
+├── model/
+├── train.py
+├── utils.py
+└── README.md
+```
+
+---
+
+## 🔮 Future Improvements
+
+* Apply data augmentation (flip, rotation)
+* Use transfer learning (ResNet, MobileNet)
+* Increase model depth with residual connections
+
+---
+
+## 🧾 Conclusion
+
+This project demonstrates:
+
+* Ability to handle RGB image classification
+* Understanding of CNN architecture design
+* Application of regularization techniques to improve model performance
+
+---
