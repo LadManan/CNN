@@ -1,0 +1,139 @@
+# EMNIST Character Classification using CNN
+
+## 📌 Overview
+
+Built a Convolutional Neural Network (CNN) to classify handwritten characters (digits + uppercase + lowercase letters) using the EMNIST ByClass dataset.
+
+✔ Multi-class classification (62 classes)
+✔ Achieved ~83% test accuracy
+✔ Handled dataset-specific preprocessing challenges
+
+---
+
+## 📂 Dataset
+
+* Dataset: EMNIST (Extended MNIST)
+* Source: https://www.kaggle.com/datasets/crawford/emnist
+* Total Classes: 62 (0–9, A–Z, a–z)
+* Image Size: 28×28 (grayscale)
+
+### ⚠️ Important Note
+
+EMNIST images are **rotated and flipped by default**, which was corrected during preprocessing.
+
+---
+
+## ⚙️ Approach
+
+### 1. Data Preprocessing
+
+* Reshaped images to 28×28
+* Fixed orientation:
+
+  * Transpose
+  * Horizontal flip
+* Normalized pixel values (0–1)
+* Added channel dimension (for CNN)
+
+---
+
+### 2. Model Architecture
+
+```plaintext
+Conv2D (32 filters) + ReLU  
+Batch Normalization  
+MaxPooling  
+
+Conv2D (64 filters) + ReLU  
+Batch Normalization  
+MaxPooling  
+
+Conv2D (128 filters) + ReLU  
+Batch Normalization  
+MaxPooling  
+
+Flatten  
+Dense (256) + ReLU  
+Dropout (0.5)  
+
+Output Layer (62 classes, Softmax)
+```
+
+---
+
+### 3. Training
+
+* Optimizer: Adam
+* Loss: Sparse Categorical Crossentropy
+* Epochs: 10
+* Batch Size: 128
+
+---
+
+## 📊 Results
+
+* Training Accuracy: ~84%
+* Test Accuracy: ~83-84%
+
+### 📈 Observations
+
+* Model performs well on digits
+* Confusion observed between similar characters:
+
+  * O vs 0
+  * l vs I
+  * c vs C
+
+---
+
+## 🧠 Key Insights
+
+* Small variations in handwritten characters significantly impact classification accuracy
+* Proper preprocessing (orientation correction) is critical
+* Increasing model depth improves performance but also risks overfitting
+
+---
+
+## 🚀 How to Run
+
+```bash
+pip install tensorflow numpy matplotlib
+```
+
+```python
+python train.py
+```
+
+---
+
+## 📁 Project Structure
+
+```plaintext
+emnist-cnn/
+│
+├── data/
+├── model/
+├── train.py
+├── utils.py
+└── README.md
+```
+
+---
+
+## 🔮 Future Improvements
+
+* Add data augmentation
+* Improve confusion handling for similar characters
+* Deploy as a web app for real-time character recognition
+
+---
+
+## 🧾 Conclusion
+
+This project demonstrates:
+
+* Understanding of CNN fundamentals
+* Handling dataset-specific challenges
+* Ability to build and evaluate multi-class classification models
+
+---
