@@ -1,1 +1,151 @@
+# Cats vs Dogs Classification using Transfer Learning (MobileNetV2)
+
+## 📌 Overview
+
+Built an image classification model to distinguish between cats and dogs using transfer learning with a pretrained CNN.
+
+✔ Binary classification (Cat vs Dog)
+✔ Achieved ~95–98% validation accuracy
+✔ Leveraged pretrained features using MobileNetV2
+
+---
+
+## 📂 Dataset
+
+* Dataset: Cats vs Dogs (PetImages)
+* Source: https://www.kaggle.com/datasets/crawford/cat-dog-image-classification
+* Total Images: ~25,000
+* Image Size: Resized to 160×160
+
+### Classes:
+
+```
+Cat
+Dog
+```
+
+---
+
+## ⚙️ Approach
+
+### 1. Data Preprocessing
+
+* Loaded images using `image_dataset_from_directory`
+* Resized images to 160×160
+* Normalized pixel values
+* Handled corrupted images using error filtering
+* Applied data augmentation:
+
+  * Horizontal flip
+  * Rotation
+  * Zoom
+
+---
+
+### 2. Model Architecture
+
+Used pretrained **MobileNetV2** (trained on ImageNet)
+
+```
+Input Layer (160×160×3)
+
+Data Augmentation  
+Preprocessing (MobileNetV2)
+
+MobileNetV2 (frozen)
+
+Global Average Pooling  
+Batch Normalization  
+
+Dense (128) + ReLU  
+Dropout (0.5)  
+
+Output Layer (1 neuron, Sigmoid)
+```
+
+---
+
+### 3. Training Strategy
+
+#### Phase 1:
+
+* Frozen base model
+* Train only top layers
+
+#### Phase 2:
+
+* Unfreeze base model
+* Fine-tune with low learning rate
+
+---
+
+## 📊 Results
+
+* Training Accuracy: ~94–96%
+* Validation Accuracy: ~96–98%
+
+### 📈 Observations
+
+* Model performs well on clear images
+* Misclassifications occur in:
+
+  * Low-quality images
+  * Similar-looking breeds
+  * Complex backgrounds
+
+---
+
+## 🧠 Key Insights
+
+* Transfer learning significantly improves performance on small datasets
+* Pretrained models capture general features (edges, textures) effectively
+* Fine-tuning must be done carefully to avoid overfitting
+* Data quality impacts model performance more than architecture
+
+---
+
+## 🚀 How to Run
+
+```
+pip install tensorflow numpy matplotlib
+```
+
+```
+python train.py
+```
+
+---
+
+## 📁 Project Structure
+
+```
+cats-dogs-transfer-learning/
+│
+├── data/
+├── model/
+├── train.py
+├── utils.py
+└── README.md
+```
+
+---
+
+## 🔮 Future Improvements
+
+* Use larger architectures (ResNet, EfficientNet)
+* Apply stronger augmentation
+* Deploy model as a web app
+* Add real-time prediction interface
+
+---
+
+## 🧾 Conclusion
+
+This project demonstrates:
+
+* Practical use of transfer learning
+* Handling real-world image data
+* Improving model performance using fine-tuning and regularization
+
+---
 
